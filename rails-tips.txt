@@ -1,0 +1,9 @@
+gem list -i gem_name
+
+In general, we add a column to a table with the following general command (note:
+the command below is one single line – i.e. only press enter after you finish writing
+all the columns and their corresponding types!).
+- rails generate migration add_​<Information>to_​<TableName>
+column_name:type​ [another_column_name:type]
+● So, To add the admin column at the terminal type the next command.
+- rails generate migration add_admin_to_users admin:boolean
