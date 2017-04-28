@@ -1,0 +1,76 @@
+#create new app
+create new appName
+
+#chamge directory
+cd appName
+
+#create gem 'devise'
+place gem 'devise' into gem file or gem 'devise', '~> 4.1', '4.1.1'
+
+#check if gem has been installed
+gem list -i gem_name
+
+#run bundle install
+bundle install
+
+#check to see if a gem is installed
+gem list -i gem_name
+
+#install devise in our application
+rails generate devise:install
+
+#1. Ensure you have defined default url options in your environments files. Here
+#is an example of default_url_options appropriate for a development environment
+#in config/environments/development.rb:
+ ∗ LOCALHOST
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000
+}
+∗ Cloud9
+config.action_mailer.default_url_options = { host: ENV['IP'], port:
+ENV['PORT'] }
+ 
+#In production, :host should be set to the actual host of your application.
+#2. Ensure you have defined root_url to *something* in your config/routes.rb.
+#For example:
+ #root to: "home#index"
+#3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+For example:
+ <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
+ 
+  4. If you are deploying on Heroku with Rails 3.2 only, you may want to set:
+ config.assets.initialize_on_precompile = false
+ On config/application.rb forcing your application to not access the DB
+ or load models when precompiling your assets.
+ 5. You can copy Devise views (for customization) to your app by running:
+ rails g devise:views
+======================
+ 
+#You can copy Devise views (for customization) to your app by running:
+rails g devise:views 
+
+#When you are done, you are ready to add Devise to any of your models using the generator:
+rails generate devise <MODEL>
+
+#Now we want to migrate those fields over the database so we execute the migration command:
+rake db:migrate
+
+#verify the routes available where we can go within our app:
+rake routes
+
+#Now we start our WEBrick server with the Cloud9 parameters
+rails s -p $PORT -b $IP
+
+#visit URL
+http://<whatever>.c9users.io/users/sign_in
+
+=====
+HTML
+=====
+<% if user_signed_in? %>
+<div> Signed <%= current_user.email %> (<%= link_to 'Sign out',
+destroy_user_session_path, :method => :delete %>)
+<% else %>
+<%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in',
+new_user_session_path %>
+<% end %>
